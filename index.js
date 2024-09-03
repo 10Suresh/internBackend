@@ -14,11 +14,13 @@ const frontendURL = process.env.URL_FRONTEND;
 // Use CORS middleware
 app.use(
   cors({
-    origin: frontendURL,
+    origin: frontendURL, // Ensure no trailing slash
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
+
+app.options('*', cors()); // Enable pre-flight requests for all routes
 
 // Use express.json() middleware to parse JSON bodies
 app.use(express.json());
